@@ -1,13 +1,11 @@
 const http = require('http');
 
-let count = 0;
-
 const app = http.createServer((req, res) => {
-  count += 1;
-  console.log(`Request arrived ${count}`);
+  // Make random numbers
+  const random = (Math.random() * 1000).toFixed(0);
 
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello World!');
+  res.end(random);
 });
 
 app.listen(3005, '127.0.0.1');

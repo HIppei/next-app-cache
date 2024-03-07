@@ -1,8 +1,8 @@
-import { getHelloWorld } from '@/utils/app-fetch';
+import { getRandomNumber } from '@/utils/app-fetch';
 
 // Static Rendering
 export default async function Component1() {
-  getHelloWorld();
+  getRandomNumber();
   console.log('Component1');
   return <div>Component1</div>;
 }
