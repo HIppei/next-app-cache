@@ -1,14 +1,14 @@
-import { getRandomNumForDataCache } from '@/utils/app-fetch';
+import { getRandomNumberWithNoRequestMemoization } from '@/utils/app-fetch';
 
 export async function GET() {
   console.log('Time-based revalidation 1');
-  await getRandomNumForDataCache({ revalidate: 5 });
+  await getRandomNumberWithNoRequestMemoization({ revalidate: 5 });
 
   // This will hit cache
   await new Promise<void>((resolve) =>
     setTimeout(async () => {
       console.log('Time-based revalidation 2');
-      await getRandomNumForDataCache();
+      await getRandomNumberWithNoRequestMemoization();
       resolve();
     }, 2000)
   );
@@ -19,7 +19,7 @@ export async function GET() {
       console.log('Time-based revalidation 3');
 
       // This request torrigers revalidation so it includes the revalidate option
-      await getRandomNumForDataCache({ revalidate: 5 });
+      await getRandomNumberWithNoRequestMemoization({ revalidate: 5 });
       resolve();
     }, 5000)
   );
@@ -28,7 +28,7 @@ export async function GET() {
   await new Promise<void>((resolve) =>
     setTimeout(async () => {
       console.log('Time-based revalidation 4');
-      await getRandomNumForDataCache();
+      await getRandomNumberWithNoRequestMemoization();
       resolve();
     }, 1000)
   );

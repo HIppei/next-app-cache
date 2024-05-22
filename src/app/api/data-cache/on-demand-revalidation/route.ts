@@ -1,17 +1,17 @@
-import { getRandomNumForDataCache } from '@/utils/app-fetch';
+import { getRandomNumberWithNoRequestMemoization } from '@/utils/app-fetch';
 import { revalidateTag } from 'next/cache';
 
 export async function GET() {
   console.log('On-demand revalidation 1');
-  await getRandomNumForDataCache({ tags: ['leech'] });
+  await getRandomNumberWithNoRequestMemoization({ tags: ['leech'] });
 
   console.log('On-demand revalidation 2');
-  await getRandomNumForDataCache();
+  await getRandomNumberWithNoRequestMemoization();
 
   revalidateTag('leech');
 
   console.log('On-demand revalidation 3');
-  await getRandomNumForDataCache();
+  await getRandomNumberWithNoRequestMemoization();
 
   return new Response('', { status: 200 });
 }
