@@ -6,7 +6,9 @@ export async function getRandomNum() {
 // Opt-out data cache
 export async function getRandomNumberWithNoDataCache() {
   const res = await fetch('http://localhost:3005', { cache: 'no-store' });
-  console.log(await res.text());
+  const text = await res.text();
+  console.log(text);
+  return text;
 }
 
 // Opt-out Request Memoization
